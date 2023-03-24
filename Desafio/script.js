@@ -57,7 +57,9 @@ class circle {
 	}
 	colision() {
 		for (const circle of Lc) {
-			dx = this
+			dx = Math.sqrt((Math.pow(circle.x-this.x,2)))
+			dy = Math.sqrt(Math.pow(circle.y-this.y,2))
+			console.log(dx + "   " + dy)
 		}
 	}
 }
