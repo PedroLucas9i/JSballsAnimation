@@ -19,7 +19,7 @@ class circle {
 	constructor(x, y, vx, vy, radius, color) {
 		this.x = x
 		this.y = y
-		this.vx = vx
+		this.vx = Math.random() * 10
 		this.vy = vy
 		this.radius = radius
 		this.color = color
@@ -57,9 +57,25 @@ class circle {
 	}
 	colision() {
 		for (const circle of Lc) {
-			dx = Math.sqrt((Math.pow(circle.x-this.x,2)))
-			dy = Math.sqrt(Math.pow(circle.y-this.y,2))
-			console.log(dx + "   " + dy)
+			if (this === circle) continue
+			dx = Math.sqrt(Math.pow(circle.x - this.x, 2))
+			dy = Math.sqrt(Math.pow(circle.y - this.y, 2))
+			if (dx < this.radius * 2) {
+				if (this.x < circle.x + circle.radius) {
+					this.vx += -1.25
+				}
+				if (this.x + this.radius > circle.x) {
+					this.vx += 1.25
+				}
+			}
+			if (dy < this.radius * 2) {
+				if (this.y > circle.y + circle.radius) {
+					this.vy += 1
+				}
+				if (this.y + this.radius < circle.y) {
+					this.vy += -1
+				}
+			}
 		}
 	}
 }
